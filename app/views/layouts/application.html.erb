@@ -10,6 +10,33 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <%= link_to 'Precook', '#', class: 'navbar-item' %>
+        </div>
+
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <%= link_to 'Home', '#', class: 'navbar-item' %>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <% if user_signed_in? %>
+                  <%= link_to '投稿する', '#', class: 'button is-primary' %>
+                  <%= link_to 'ログアウト', destroy_user_session_path, class: 'buttons is-light' %>
+                <% else %>
+                  <%= link_to 'サインアップ', new_user_registration_path, class: 'button is-primary' %>
+                  <%= link_to 'ログイン', new_user_session_path, class: 'button is-light' %>
+                <% end %>
+              </div>
+            </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
