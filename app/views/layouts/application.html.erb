@@ -4,6 +4,7 @@
     <title>Precook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,12 +14,13 @@
     <header>
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <%= link_to 'Precook', '#', class: 'navbar-item' %>
+          <%= link_to 'Precook', root_path, class: 'navbar-item' %>
         </div>
 
         <div class="navbar-menu">
           <div class="navbar-start">
-            <%= link_to 'Home', '#', class: 'navbar-item' %>
+            <%= link_to 'レシピ一覧', recipes_path, class: 'navbar-item' %>
+            <%= link_to '週間プラン一覧', weekly_plans_index_path, class: 'navbar-item' %>
           </div>
         </div>
 
@@ -26,8 +28,9 @@
             <div class="navbar-item">
               <div class="buttons">
                 <% if user_signed_in? %>
-                  <%= link_to '投稿する', '#', class: 'button is-primary' %>
-                  <%= link_to 'ログアウト', destroy_user_session_path, class: 'buttons is-light' %>
+                  <%= link_to 'レシピ投稿', new_recipe_path, class: 'button is-primary' %>
+                  <%= link_to '週間プラン作成', weekly_plans_new_path, class: 'button is-primary' %>
+                  <%= link_to 'ログアウト', destroy_user_session_path, class: 'button is-light', method: :delete %>
                 <% else %>
                   <%= link_to 'サインアップ', new_user_registration_path, class: 'button is-primary' %>
                   <%= link_to 'ログイン', new_user_session_path, class: 'button is-light' %>

@@ -1,0 +1,20 @@
+<h1 class="title">週間プラン一覧</h1>
+
+<div class="columns">
+  <% @weekly_plans.each do |wp| %>
+    <div class="column is-3">
+      <div class="box">
+        <p>
+          <%= link_to wp.name, weekly_plan_path(wp.id), class: 'title' %>
+        </p>
+        <p class="subtitle">
+          @<%= wp.user.name %>
+        </p>
+
+        <% wp.plans.each_with_index do |p, day| %>
+          <p><%= "#{day+1}日目：#{p.recipe.name}" %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

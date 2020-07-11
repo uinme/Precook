@@ -1,2 +1,21 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<h1 class="title"><%= @recipe.name %></h1>
+<h2 class="subtitle">@<%= @recipe.user.name %></h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>材料名</th>
+        <th>分量 [g]</th>
+        <th>切り方</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.name %></td>
+          <td><%= ingredient.amount %></td>
+          <td><%= ingredient.cut_style %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

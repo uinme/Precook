@@ -1,0 +1,27 @@
+<div class="box">
+  <h1 class="title"><%= @weekly_plan.name %></h1>
+  <h2 class="subtitle">@<%= @weekly_plan.user.name %></h2>
+
+  <% @weekly_plan.plans.each_with_index do |p, day| %>
+    <p><%= "#{day+1}日目：#{p.recipe.name}" %></p>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>材料名</th>
+        <th>切り方</th>
+        <th>分量</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% organize_ingredients(@weekly_plan.id).each do |i| %>
+        <tr>
+          <td><%= i.name %></td>
+          <td><%= i.cut_style %></td>
+          <td><%= i.amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

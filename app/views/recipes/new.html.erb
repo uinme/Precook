@@ -1,2 +1,49 @@
-<h1>Recipes#new</h1>
-<p>Find me in app/views/recipes/new.html.erb</p>
+<h1 class="title">レシピ投稿</h1>
+
+<%= form_for @recipe do |f| %>
+  <div class="columns">
+    <div class="column is-half">
+      <div class="field is-horizontal is-half">
+        <div class="field-label is-normal">
+          <%= f.label :name, 'レシピ名', class: 'label' %>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.text_field :name, class: 'input' %>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+      <div id="ingredients">
+        <%= f.fields_for :ingredients do |ingredient| %>
+          <%= render 'ingredient_fields', :f => ingredient %>
+        <% end %>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field">
+          <div class="control">
+            <div class="links">
+              <%= link_to_add_association '材料を追加', f, :ingredients,
+                class: 'button',
+                data: {
+                  association_insertion_node: '#ingredients',
+                  association_insertion_method: 'append'
+                }
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field">
+          <div class="control">
+            <%= f.submit 'Submit', class: 'button is-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
