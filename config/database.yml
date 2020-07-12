@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: precook_production
-  username: precook
-  password: <%= ENV['PRECOOK_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
